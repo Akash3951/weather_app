@@ -20,11 +20,16 @@ def get_weatherdata():
         'appid':request.form.get('appid'),
         'units':'metric'
     }
-
     response = requests.get(url, params=param)
     data = response.json()
-    return f"data:{data}"
-
+    # city = data['name']
+    # return f"data:{data} <h1>{city}</h1>"
+    table = f"<table border=1>"
+    for key,value in data.items():
+        table += f'<tr><td>{key}</td><td>{value}</td></tr>'
+    table += f'</table>'
+    
+    return table
 
 
 
